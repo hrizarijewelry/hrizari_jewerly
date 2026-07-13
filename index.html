@@ -5,32 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HriZari Jewelry</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Иконка за количката -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
+    <!-- НАВИГАЦИОННО МЕНЮ -->
     <nav class="navbar">
         <div class="logo">HriZari Jewelry</div>
         <ul class="nav-links">
-            <li><a href="javascript:void(0)">Home</a></li>
-            <li><a href="javascript:void(0)">Bracelets</a></li>
-            <li><a href="javascript:void(0)">Necklaces</a></li>
-            <li><a href="#contacts">Contacts</a></li>
+            <li><a href="#">Начало</a></li>
+            <li><a href="#shop">Продукти</a></li>
+            <li><a href="#contacts">Контакти</a></li>
+            <!-- Бутон за количка -->
+            <li class="cart-icon-container" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-count">0</span>
+            </li>
         </ul>
     </nav>
 
+    <!-- ГОЛЯМ ЗАГЛАВЕН БАНЕР -->
     <section class="hero">
         <div class="hero-content">
             <h1>Welcome to HriZari Jewelry</h1>
             <p>Handmade bracelets and necklaces with natural stones</p>
-            <a href="javascript:void(0)" class="hero-btn">See the collection</a>
+            <a href="#shop" class="hero-btn">Виж колекцията</a>
         </div>
     </section>
 
-    <main class="shop-section">
-        <h2>Our handmade jewelry</h2>
+    <!-- СЕКЦИЯ С ПРОДУКТИ -->
+    <main class="shop-section" id="shop">
+        <h2>Нашите ръчно изработени бижута</h2>
         
         <div class="products-grid">
             
+            <!-- Артикул 1 -->
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="grivna1_a.jpg" alt="Rainbow Bracelet" class="product-img main-img">
@@ -39,9 +49,10 @@
                 <h3>Rainbow Summer Bracelet</h3>
                 <p class="product-desc">Ръчно изтъкана цветна гривна в преливащи нюанси, носеща лятно настроение.</p>
                 <p class="price">€7.50</p>
-                <button class="buy-btn">Buy now</button>
+                <button class="buy-btn" onclick="addToCart('Rainbow Summer Bracelet', 7.50)">Купи сега</button>
             </div>
 
+            <!-- Артикул 2 -->
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="grivna2_a.jpg" alt="Shamballa Bracelet" class="product-img main-img">
@@ -50,9 +61,10 @@
                 <h3>Classic Black & Red Shamballa</h3>
                 <p class="product-desc">Елегантна гривна Шамбала с лъскави черни елементи и контрастиращ червен конец.</p>
                 <p class="price">€10.00</p>
-                <button class="buy-btn">Buy now</button>
+                <button class="buy-btn" onclick="addToCart('Classic Black & Red Shamballa', 10.00)">Купи сега</button>
             </div>
 
+            <!-- Артикул 3 -->
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="grivna3_a.jpg" alt="Neon Bracelet" class="product-img main-img">
@@ -61,9 +73,10 @@
                 <h3>Neon Woven Bracelet</h3>
                 <p class="product-desc">Свежа комбинация от неонови цветове – лилаво, зелено и оранжево в здрава плетка.</p>
                 <p class="price">€7.50</p>
-                <button class="buy-btn">Buy now</button>
+                <button class="buy-btn" onclick="addToCart('Neon Woven Bracelet', 7.50)">Купи сега</button>
             </div>
 
+            <!-- Артикул 4 -->
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="grivna4_a.jpg" alt="Pink Elegance" class="product-img main-img">
@@ -72,9 +85,10 @@
                 <h3>Pink Elegance Bracelet</h3>
                 <p class="product-desc">Нежна и дискретна гривна в пастелно розово, перфектна за ежедневен стил.</p>
                 <p class="price">€6.00</p>
-                <button class="buy-btn">Buy now</button>
+                <button class="buy-btn" onclick="addToCart('Pink Elegance Bracelet', 6.00)">Купи сега</button>
             </div>
 
+            <!-- Артикул 5 -->
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="grivna5_a.jpg" alt="Deep Blue Bracelet" class="product-img main-img">
@@ -83,9 +97,10 @@
                 <h3>Deep Ocean Woven Bracelet</h3>
                 <p class="product-desc">Стилна тъмна плетка в дълбок нюанс, подходяща както за жени, така и за мъже.</p>
                 <p class="price">€7.50</p>
-                <button class="buy-btn">Buy now</button>
+                <button class="buy-btn" onclick="addToCart('Deep Ocean Woven Bracelet', 7.50)">Купи сега</button>
             </div>
 
+            <!-- Артикул 6 -->
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="grivna6_a.jpg" alt="Red Passion" class="product-img main-img">
@@ -94,9 +109,10 @@
                 <h3>Red Passion Woven Bracelet</h3>
                 <p class="product-desc">Ярка червена гривна със стилни тъмни акценти, изплетена с изключително внимание.</p>
                 <p class="price">€7.50</p>
-                <button class="buy-btn">Buy now</button>
+                <button class="buy-btn" onclick="addToCart('Red Passion Woven Bracelet', 7.50)">Купи сега</button>
             </div>
 
+            <!-- Артикул 7 -->
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="grivna7_a.jpg" alt="Sky Blue" class="product-img main-img">
@@ -105,9 +121,10 @@
                 <h3>Sky Blue Comfort Bracelet</h3>
                 <p class="product-desc">Красив небесносин нюанс, съчетан със здрава и удобна за ежедневно носене плетка.</p>
                 <p class="price">€7.50</p>
-                <button class="buy-btn">Buy now</button>
+                <button class="buy-btn" onclick="addToCart('Sky Blue Comfort Bracelet', 7.50)">Купи сега</button>
             </div>
 
+            <!-- Артикул 8 -->
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="grivna8_a.jpg" alt="Midnight Black" class="product-img main-img">
@@ -116,9 +133,10 @@
                 <h3>Midnight Black Minimalist</h3>
                 <p class="product-desc">Изчистен класически черен дизайн, подходящ за всякакви комбинации и стилове.</p>
                 <p class="price">€6.00</p>
-                <button class="buy-btn">Buy now</button>
+                <button class="buy-btn" onclick="addToCart('Midnight Black Minimalist', 6.00)">Купи сега</button>
             </div>
 
+            <!-- Артикул 9 -->
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="grivna9_a.jpg" alt="Berry Mix" class="product-img main-img">
@@ -127,9 +145,10 @@
                 <h3>Berry Mix Woven Bracelet</h3>
                 <p class="product-desc">Забавна и жизнена комбинация от розови, лилави и сини нишки в перфектен баланс.</p>
                 <p class="price">€7.50</p>
-                <button class="buy-btn">Buy now</button>
+                <button class="buy-btn" onclick="addToCart('Berry Mix Woven Bracelet', 7.50)">Купи сега</button>
             </div>
 
+            <!-- Артикул 10 -->
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="grivna10_a.jpg" alt="Turquoise Wave" class="product-img main-img">
@@ -138,9 +157,10 @@
                 <h3>Turquoise Wave Bracelet</h3>
                 <p class="product-desc">Свеж тюркоазен цвят, напомнящ за морски вълни и екзотични дестинации.</p>
                 <p class="price">€7.50</p>
-                <button class="buy-btn">Buy now</button>
+                <button class="buy-btn" onclick="addToCart('Turquoise Wave Bracelet', 7.50)">Купи сега</button>
             </div>
 
+            <!-- Артикул 11 -->
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="grivna11_a.jpg" alt="Tricolor Bracelet" class="product-img main-img">
@@ -149,9 +169,10 @@
                 <h3>Tricolor Tradition Bracelet</h3>
                 <p class="product-desc">Красив бяло-зелено-червен дизайн, вдъхновен от традиционните български мотиви.</p>
                 <p class="price">€7.50</p>
-                <button class="buy-btn">Buy now</button>
+                <button class="buy-btn" onclick="addToCart('Tricolor Tradition Bracelet', 7.50)">Купи сега</button>
             </div>
 
+            <!-- Артикул 12 -->
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="grivna12_a.jpg" alt="Olive Forest" class="product-img main-img">
@@ -160,9 +181,10 @@
                 <h3>Olive Forest Woven Bracelet</h3>
                 <p class="product-desc">Стилна земна гривна в наситени маслинено-зелени тонове, перфектна за всеки сезон.</p>
                 <p class="price">€7.50</p>
-                <button class="buy-btn">Buy now</button>
+                <button class="buy-btn" onclick="addToCart('Olive Forest Woven Bracelet', 7.50)">Купи сега</button>
             </div>
 
+            <!-- Артикул 13 -->
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="grivna13_a.jpg" alt="Candy Violet" class="product-img main-img">
@@ -171,16 +193,38 @@
                 <h3>Candy Violet Wave Bracelet</h3>
                 <p class="product-desc">Нежно преливане от наситено лилаво към бонбонено розово в ефектна релефна плетка.</p>
                 <p class="price">€7.50</p>
-                <button class="buy-btn">Buy now</button>
+                <button class="buy-btn" onclick="addToCart('Candy Violet Wave Bracelet', 7.50)">Купи сега</button>
             </div>
 
         </div>
     </main>
 
+    <!-- СТРАНИЧЕН ПАНЕЛ ЗА КОЛИЧКА -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Вашата количка</h3>
+            <button class="close-btn" onclick="toggleCart()">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items-container">
+            <!-- Тук динамично ще се добавят продуктите -->
+        </div>
+        <div class="cart-footer">
+            <div class="total-price">Общо: <span id="cart-total">€0.00</span></div>
+            
+            <!-- ФОРМА ЗА ПОРЪЧКА -->
+            <form id="order-form" onsubmit="sendOrder(event)">
+                <input type="text" id="client-name" placeholder="Име и Фамилия" required>
+                <input type="tel" id="client-phone" placeholder="Телефон за връзка" required>
+                <input type="text" id="client-address" placeholder="Град и офис на Еконт/Спиди (или адрес)" required>
+                <button type="submit" class="checkout-btn">Завърши поръчката</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- СЕКЦИЯ КОНТАКТИ -->
     <footer id="contacts" class="footer-section">
         <div class="footer-content">
             <h3>Contact Us</h3>
-            <p>Имате въпроси или искате да поръчате индивидуален дизайн?</p>
             <div class="contact-info">
                 <p>📞 <strong>Телефон:</strong> 087 908 4664</p>
                 <p>✉️ <strong>Имейл:</strong> hrizarijewerly@gmail.com</p>
@@ -190,5 +234,99 @@
         </div>
     </footer>
 
+    <!-- ЛОГИКА НА МАГАЗИНА (JAVASCRIPT) -->
+    <script>
+        let cart = [];
+
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('active');
+        }
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            updateCartUI();
+            // Автоматично отваря количката при добавяне
+            document.getElementById('cart-sidebar').classList.add('active');
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotal = document.getElementById('cart-total');
+            
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            let totalItems = 0;
+
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                totalItems += item.quantity;
+
+                const itemElement = document.createElement('div');
+                itemElement.classNames = 'cart-item';
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <p>${item.quantity} x €${item.price.toFixed(2)}</p>
+                    </div>
+                    <button class="remove-item-btn" onclick="removeFromCart('${item.name}')">&times;</button>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+            });
+
+            cartCount.innerText = totalItems;
+            cartTotal.innerText = `€${total.toFixed(2)}`;
+        }
+
+        function sendOrder(event) {
+            event.preventDefault();
+            if (cart.length === 0) {
+                alert('Количката ви е празна!');
+                return;
+            }
+
+            const name = document.getElementById('client-name').value;
+            const phone = document.getElementById('client-phone').value;
+            const address = document.getElementById('client-address').value;
+
+            let productsText = '';
+            let total = 0;
+            cart.forEach(item => {
+                productsText += `- ${item.name} (${item.quantity}бр.)\n`;
+                total += item.price * item.quantity;
+            });
+
+            // Създаване на съобщение за имейл
+            const emailSubject = encodeURIComponent('Нова поръчка от HriZari Jewelry');
+            const emailBody = encodeURIComponent(
+                `Име на клиента: ${name}\n` +
+                `Телефон: ${phone}\n` +
+                `Адрес/Офис: ${address}\n\n` +
+                `Поръчани продукти:\n${productsText}\n` +
+                `Обща сума: €${total.toFixed(2)}`
+            );
+
+            // Отваряне на имейл клиент (напр. Gmail) готов за пращане
+            window.location.href = `mailto:hrizarijewerly@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+            
+            // Нулиране на количката
+            cart = [];
+            updateCartUI();
+            toggleCart();
+            document.getElementById('order-form').reset();
+            alert('Благодарим ви! Поръчката ви е подготвена. Моля, изпратете генерирания имейл.');
+        }
+    </script>
 </body>
-</html>      
+</html> 
