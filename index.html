@@ -1146,6 +1146,38 @@
                 alert("Ако Viber не се отвори автоматично, можете да ни пишете директно на номер: 087 908 4664");
             }, 2000);
         }
+    const products = [
+    { name: "Гривна 1", price: 15.00, desc: "Кратко описание на гривна 1.", imgA: "img1_a.jpg", imgB: "img1_b.jpg" },
+    { name: "Гривна 2", price: 18.00, desc: "Кратко описание на гривна 2.", imgA: "img2_a.jpg", imgB: "img2_b.jpg" },
+    { name: "Гривна 3", price: 12.00, desc: "Кратко описание на гривна 3.", imgA: "img3_a.jpg", imgB: "img3_b.jpg" },
+    { name: "Гривна 4", price: 20.00, desc: "Кратко описание на гривна 4.", imgA: "img4_a.jpg", imgB: "img4_b.jpg" },
+    { name: "Гривна 5", price: 17.00, desc: "Кратко описание на гривна 5.", imgA: "img5_a.jpg", imgB: "img5_b.jpg" },
+    { name: "Гривна 6", price: 19.00, desc: "Кратко описание на гривна 6.", imgA: "img6_a.jpg", imgB: "img6_b.jpg" },
+    { name: "Гривна 7", price: 22.00, desc: "Кратко описание на гривна 7.", imgA: "img7_a.jpg", imgB: "img7_b.jpg" },
+    { name: "Гривна 8", price: 16.00, desc: "Кратко описание на гривна 8.", imgA: "img8_a.jpg", imgB: "img8_b.jpg" },
+    { name: "Гривна 9", price: 14.00, desc: "Кратко описание на гривна 9.", imgA: "img9_a.jpg", imgB: "img9_b.jpg" },
+    { name: "Гривна 10", price: 25.00, desc: "Кратко описание на гривна 10.", imgA: "img10_a.jpg", imgB: "img10_b.jpg" },
+    { name: "Гривна 11", price: 13.00, desc: "Кратко описание на гривна 11.", imgA: "img11_a.jpg", imgB: "img11_b.jpg" },
+    { name: "Гривна 12", price: 21.00, desc: "Кратко описание на гривна 12.", imgA: "img12_a.jpg", imgB: "img12_b.jpg" }
+];
+
+function renderProducts() {
+    const container = document.getElementById('products-container');
+    if (!container) return;
+    container.innerHTML = products.map(p => `
+        <div class="product-card">
+            <div class="product-image-container" onclick="openModal('${p.name}', ${p.price}, '${p.imgA}', '${p.imgB}')">
+                <img src="${p.imgA}" class="product-img" alt="${p.name}">
+            </div>
+            <h3>${p.name}</h3>
+            <p style="font-size: 14px; color: #666; margin-bottom: 10px;">${p.desc}</p>
+            <p class="price">€${p.price.toFixed(2)}</p>
+            <button class="buy-btn" onclick="openModal('${p.name}', ${p.price}, '${p.imgA}', '${p.imgB}')">Разгледай</button>
+        </div>
+    `).join('');
+}
+
+window.onload = renderProducts;
     </script>
 
 </body>
