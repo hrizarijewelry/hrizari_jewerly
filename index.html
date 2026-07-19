@@ -94,41 +94,14 @@
             margin: 0;
         }
 
-        /* ФИЛТРИ ЗА ПРОДУКТИТЕ (Категории) - Скрити засега, докато няма колиета */
-        .filter-container {
-            display: none; /* Промени на 'block', когато пуснеш колиета */
-            text-align: center;
-            margin: 40px 0 20px 0;
-        }
-        .filter-btn {
-            background-color: #fff;
-            color: #333;
-            border: 1px solid #d4a373;
-            padding: 10px 25px;
-            margin: 5px;
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .filter-btn:hover, .filter-btn.active {
-            background-color: #d4a373;
-            color: white;
-            box-shadow: 0 4px 10px rgba(212, 163, 115, 0.3);
-        }
-
-        /* Анимация за скриване/показване на картите */
+        /* Продуктови карти */
         .product-card {
             background: #fff;
             border-radius: 8px;
             padding: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            display: block;
-        }
-        .product-card.hidden {
-            display: none !important;
+            display: block !important; /* Гарантира, че винаги се виждат */
         }
         .product-card:hover {
             transform: translateY(-5px);
@@ -532,7 +505,7 @@
     <section id="about" class="about-section">
         <div class="about-container">
             <h2>About HriZari Jewelry</h2>
-            <p>Добре дошли в нашето кътче за творчество! Всички наши гривни се изработват изцяло на ръка с изключително внимание към детайла. Използмаме качествени материали, здрави плетки и красиви естествени камъни, за да създадем уникални бижута, които носят настроение, стил и положителна енергия в ежедневието ви.</p>
+            <p>Добре дошли в нашето кътче за творчество! Всички наши гривни се изработват изцяло на ръка с изключително внимание към детайла. Използваме качествени материали, здрави плетки и красиви естествени камъни, за да създадем уникални бижута, които носят настроение, стил и положителна енергия в ежедневието ви.</p>
         </div>
     </section>
 
@@ -540,17 +513,10 @@
     <main class="shop-section" id="bracelets-section">
         <h2>Our handmade collection</h2>
         
-        <!-- БУТОНИ ЗА ФИЛТРИРАНЕ НА КАТЕГОРИИ (Скрити чрез CSS display: none) -->
-        <div class="filter-container">
-            <button class="filter-btn active" onclick="filterCategory('all', this)">Всички</button>
-            <button class="filter-btn" onclick="filterCategory('grivni', this)">Гривни</button>
-            <button class="filter-btn" onclick="filterCategory('kolieta', this)">Колиета</button>
-        </div>
-        
         <div class="products-grid">
             
             <!-- Продукт 1 -->
-            <div class="product-card grivni">
+            <div class="product-card">
                 <div class="product-image-container" onclick="openModal('Rainbow Summer Bracelet', '7.50', 'grivna1_a.jpg', 'grivna1_b.jpg')">
                     <img src="grivna1_a.jpg" alt="Rainbow Bracelet" class="product-img main-img">
                     <img src="grivna1_b.jpg" alt="Rainbow Bracelet View" class="product-img hover-img">
@@ -562,7 +528,7 @@
             </div>
 
             <!-- Продукт 2 -->
-            <div class="product-card grivni">
+            <div class="product-card">
                 <div class="product-image-container" onclick="openModal('Classic Black & Red Shamballa', '10.00', 'grivna2_a.jpg', 'grivna2_b.jpg')">
                     <img src="grivna2_a.jpg" alt="Shamballa Bracelet" class="product-img main-img">
                     <img src="grivna2_b.jpg" alt="Shamballa Bracelet View" class="product-img hover-img">
@@ -573,20 +539,8 @@
                 <button class="buy-btn" onclick="openModal('Classic Black & Red Shamballa', '10.00', 'grivna2_a.jpg', 'grivna2_b.jpg')">Buy now</button>
             </div>
 
-            <!-- Примерното колие е СКРИТО (display: none директно в тага) -->
-            <div class="product-card kolieta" style="display: none;">
-                <div class="product-image-container" onclick="openModal('Crystal Ocean Choker', '14.90', 'necklace1_a.jpg', 'necklace1_b.jpg')">
-                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=500" alt="Necklace" class="product-img main-img">
-                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=500" alt="Necklace View" class="product-img hover-img">
-                </div>
-                <h3>Crystal Ocean Choker</h3>
-                <p class="product-desc">Нежно ръчно изработено колие с акцент от естествен кристал и сребристи елементи.</p>
-                <p class="price">€14.90</p>
-                <button class="buy-btn" onclick="openModal('Crystal Ocean Choker', '14.90', 'necklace1_a.jpg', 'necklace1_b.jpg')">Buy now</button>
-            </div>
-
             <!-- Продукт 3 -->
-            <div class="product-card grivni">
+            <div class="product-card">
                 <div class="product-image-container" onclick="openModal('Pink Elegance Bracelet', '6.00', 'grivna4_a.jpg', 'grivna4_b.jpg')">
                     <img src="grivna4_a.jpg" alt="Pink Elegance" class="product-img main-img">
                     <img src="grivna4_b.jpg" alt="Pink Elegance View" class="product-img hover-img">
@@ -757,25 +711,6 @@
         let isDiscountApplied = false;
         let discountPercentage = 0;
 
-        function filterCategory(category, buttonElement) {
-            let buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            buttonElement.classList.add('active');
-
-            let cards = document.querySelectorAll('.product-card');
-            cards.forEach(card => {
-                if (category === 'all') {
-                    card.classList.remove('hidden');
-                } else {
-                    if (card.classList.contains(category)) {
-                        card.classList.remove('hidden');
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                }
-            });
-        }
-
         function openModal(name, price, imgA, imgB) {
             selectedProductName = name;
             selectedProductPrice = parseFloat(price);
@@ -920,7 +855,7 @@
                            `Телефон: ${clientPhone}\n` +
                            `Адрес/Офис за доставка: ${clientAddress}\n\n` +
                            `Поръчани продукти:\n` +
-                           `- ${selectedProductName} | Размер: ${selectedSize} | Количество: ${finalQty}бр. (Базова цена: €${prodPriceTotal.toFixed(2)})\n\n` +
+                           `- ${selectedProductName} | Размер: ${selectedSize} | Quantity: ${finalQty}бр. (Базова цена: €${prodPriceTotal.toFixed(2)})\n\n` +
                            `Приложен промокод: ${promoUsed}\n` +
                            `Подаръчна опаковка: ${giftApplied}\n` +
                            `Доставка: ${deliveryText}\n` +
