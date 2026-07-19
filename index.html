@@ -17,7 +17,7 @@
             font-weight: bold;
         }
 
-        /* Стилове за новия голям банер (Hero Banner) */
+        /* Стилове за големия банер (Hero Banner) */
         .hero-banner {
             background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(245, 230, 225, 0.65)), 
                         url('https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=1920') no-repeat center center/cover;
@@ -124,7 +124,7 @@
             left: 0; top: 0; 
             width: 100%; height: 100%; 
             background-color: rgba(0,0,0,0.6); 
-            overflow-y: auto; /* Позволява скролване на мобилни устройства, тъй като формата стана по-дълга */
+            overflow-y: auto;
         }
         .modal-content {
             background-color: #fff;
@@ -151,7 +151,7 @@
         }
         #modal-img {
             width: 100%;
-            max-height: 280px; /* Намалено малко, за да се вижда повече от формата без скролване */
+            max-height: 250px;
             object-fit: cover;
             border-radius: 8px;
         }
@@ -202,6 +202,49 @@
         .form-input:focus, .size-select:focus {
             border-color: #d4a373;
             outline: none;
+        }
+
+        /* Специален ред за Промокод с бутон "Приложи" */
+        .promo-code-wrapper {
+            display: flex;
+            gap: 8px;
+        }
+        .promo-btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 0 15px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .promo-btn:hover {
+            background-color: #555;
+        }
+
+        /* Стил за подаръчната опаковка (Checkbox подредба) */
+        .gift-wrap-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #fff9f5;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px dashed #ebdcc5;
+            margin-bottom: 12px;
+            cursor: pointer;
+            user-select: none;
+            font-size: 14px;
+            font-weight: bold;
+            color: #555;
+        }
+        .gift-wrap-container input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #d4a373;
         }
 
         /* Ред за Размер и Количество едно до друго */
@@ -419,7 +462,7 @@
     <section id="about" class="about-section">
         <div class="about-container">
             <h2>About HriZari Jewelry</h2>
-            <p>Добре дошли в нашето кътче за творчество! Всички наши гривни се изработват изцяло на ръка с изключително внимание към детайла. Използваме качествени материали, здрави плетки и красиви естествени камъни, за да създадем уникални бижута, които носят настроение, стил и положителна енергия в ежедневието ви.</p>
+            <p>Добре дошли в нашето кътче за творчество! Всички наши гривни се изработват изцяло на ръка с изключително внимание към детайла. Използмаве качествени материали, здрави плетки и красиви естествени камъни, за да създадем уникални бижута, които носят настроение, стил и положителна енергия в ежедневието ви.</p>
         </div>
     </section>
 
@@ -633,11 +676,35 @@
                 </select>
             </div>
 
-            <!-- ДИНАМИЧЕН КАЛКУЛАТОР НА СУМАТА (КАТО НА СНИМКАТА) -->
+            <!-- ДОБАВКА: КУТИЯ ЗА ПОДАРЪЧНА ОПАКОВКА -->
+            <label class="gift-wrap-container">
+                <input type="checkbox" id="gift-wrap" onchange="calculateTotal()">
+                🎁 Добави подаръчна кутийка (+€1.50)
+            </label>
+
+            <!-- ДОБАВКА: ПОЛЕ ЗА ПРОМОКОД -->
+            <div class="order-form-group">
+                <label for="promo-code">Промокод:</label>
+                <div class="promo-code-wrapper">
+                    <input type="text" id="promo-code" class="form-input" placeholder="Въведете код тук...">
+                    <button class="promo-btn" onclick="applyPromoCode()">Приложи</button>
+                </div>
+                <span id="promo-message" style="font-size: 12px; display: block; margin-top: 4px; font-weight: bold;"></span>
+            </div>
+
+            <!-- ДИНАМИЧЕН КАЛКУЛАТОР НА СУМАТА -->
             <div class="summary-box">
                 <div class="summary-row">
                     <span>Избрани продукти:</span>
                     <span>€<span id="summary-products-price">0.00</span></span>
+                </div>
+                <div class="summary-row" id="discount-row" style="display: none; color: #dc3545; font-weight: bold;">
+                    <span>Отстъпка (Промокод):</span>
+                    <span>-€<span id="summary-discount-amount">0.00</span></span>
+                </div>
+                <div class="summary-row" id="gift-row" style="display: none;">
+                    <span>Подаръчна опаковка:</span>
+                    <span>€1.50</span>
                 </div>
                 <div class="summary-row">
                     <span>Доставка:</span>
@@ -649,7 +716,7 @@
                 </div>
             </div>
 
-            <!-- ПОЛЕТА ЗА ДАННИ НА КЛИЕНТА ВГРАДЕНИ ДИРЕКТНО ТУК -->
+            <!-- ПОЛЕТА ЗА ДАННИ НА КЛИЕНТА -->
             <div class="order-form-group">
                 <label for="client-name">Име и Фамилия:</label>
                 <input type="text" id="client-name" class="form-input" placeholder="Иванка Иванова">
@@ -692,6 +759,8 @@
         let currentImgIndex = 0;
         let selectedProductName = "";
         let selectedProductPrice = 0;
+        let isDiscountApplied = false;
+        let discountPercentage = 0;
 
         function openModal(name, price, imgA, imgB) {
             selectedProductName = name;
@@ -702,13 +771,19 @@
             document.getElementById('modal-title').innerText = name;
             document.getElementById('modal-img').src = currentImages[currentImgIndex];
             
-            // Изчистване на полетата при нов прозорец
+            // Нулиране на полетата и състоянията
             document.getElementById('product-qty').value = 1;
             document.getElementById('client-name').value = "";
             document.getElementById('client-phone').value = "";
             document.getElementById('client-address').value = "";
+            document.getElementById('promo-code').value = "";
+            document.getElementById('promo-message').innerText = "";
+            document.getElementById('gift-wrap').checked = false;
             document.getElementById('delivery-method').selectedIndex = 0;
-            document.getElementById('bracelet-size').selectedIndex = 1; // Директен индекс за М размер
+            document.getElementById('bracelet-size').selectedIndex = 1;
+            
+            isDiscountApplied = false;
+            discountPercentage = 0;
             
             updateImageCounter();
             calculateTotal();
@@ -741,19 +816,61 @@
             let newQty = currentQty + amount;
             if (newQty >= 1 && newQty <= 10) {
                 qtyInput.value = newQty;
-                calculateTotal(); // Преизчислява сумата при промяна на бройката
+                calculateTotal();
             }
         }
 
-        // НОВА ФУНКЦИЯ: Динамичен калкулатор за сумите в реално време
+        // НОВА ФУНКЦИЯ: Прилагане на валиден промокод
+        function applyPromoCode() {
+            let enteredCode = document.getElementById('promo-code').value.trim().toUpperCase();
+            let msgElement = document.getElementById('promo-message');
+
+            if (enteredCode === "HRIZARI10") {
+                isDiscountApplied = true;
+                discountPercentage = 0.10; // 10% отстъпка
+                msgElement.style.color = "#28a745";
+                msgElement.innerText = "✓ Промокодът е приложен! (10% отстъпка)";
+            } else if (enteredCode === "") {
+                isDiscountApplied = false;
+                discountPercentage = 0;
+                msgElement.innerText = "";
+            } else {
+                isDiscountApplied = false;
+                discountPercentage = 0;
+                msgElement.style.color = "#dc3545";
+                msgElement.innerText = "✗ Невалиден промокод!";
+            }
+            calculateTotal();
+        }
+
+        // ОБНОВЕНА ФУНКЦИЯ: Преизчисляване на сметката с включен промокод и подарък
         function calculateTotal() {
             let qty = parseInt(document.getElementById('product-qty').value);
             let productsPrice = selectedProductPrice * qty;
             
+            // Изчисляване на отстъпката
+            let discountAmount = 0;
+            if (isDiscountApplied) {
+                discountAmount = productsPrice * discountPercentage;
+                document.getElementById('summary-discount-amount').innerText = discountAmount.toFixed(2);
+                document.getElementById('discount-row').style.display = 'flex';
+            } else {
+                document.getElementById('discount-row').style.display = 'none';
+            }
+
+            // Изчисляване на цената за подаръчна кутия
+            let giftPrice = 0;
+            if (document.getElementById('gift-wrap').checked) {
+                giftPrice = 1.50;
+                document.getElementById('gift-row').style.display = 'flex';
+            } else {
+                document.getElementById('gift-row').style.display = 'none';
+            }
+            
             let deliveryMethod = document.getElementById('delivery-method').value;
             let shippingPrice = 0;
 
-            // Проверка за безплатна доставка над €30 (само за продуктите)
+            // Безплатна доставка над €30 (гледа се базовата цена на продуктите)
             if (productsPrice >= 30) {
                 shippingPrice = 0;
                 document.getElementById('summary-shipping-price').innerText = "БЕЗПЛАТНА (Промо)";
@@ -762,19 +879,18 @@
                 document.getElementById('summary-shipping-price').innerText = `€${shippingPrice.toFixed(2)}`;
             }
 
-            let totalPrice = productsPrice + shippingPrice;
+            // Крайна формула: Продукти - Отстъпка + Подарък + Доставка
+            let totalPrice = productsPrice - discountAmount + giftPrice + shippingPrice;
 
             document.getElementById('summary-products-price').innerText = productsPrice.toFixed(2);
             document.getElementById('summary-total-price').innerText = totalPrice.toFixed(2);
         }
 
         function sendOrderEmail() {
-            // Вземане на данните директно от input полетата в кутията
             let clientName = document.getElementById('client-name').value.trim();
             let clientPhone = document.getElementById('client-phone').value.trim();
             let clientAddress = document.getElementById('client-address').value.trim();
 
-            // Валидация - ако някое поле е празно, спираме поръчката и известяваме клиента
             if (!clientName || !clientPhone || !clientAddress) {
                 alert("Моля, попълнете всички полета за доставка (Име, Телефон и Адрес) преди да потвърдите поръчката!");
                 return;
@@ -784,6 +900,9 @@
             let finalQty = parseInt(document.getElementById('product-qty').value);
             
             let prodPriceTotal = (selectedProductPrice * finalQty);
+            let giftApplied = document.getElementById('gift-wrap').checked ? "ДА (+€1.50)" : "НЕ";
+            let promoUsed = isDiscountApplied ? "HRIZARI10 (10% отстъпка)" : "Няма";
+            
             let deliveryText = document.getElementById('summary-shipping-price').innerText;
             let finalTotal = document.getElementById('summary-total-price').innerText;
 
@@ -794,7 +913,9 @@
                            `Телефон: ${clientPhone}\n` +
                            `Адрес/Офис за доставка: ${clientAddress}\n\n` +
                            `Поръчани продукти:\n` +
-                           `- ${selectedProductName} | Размер: ${selectedSize} | Количество: ${finalQty}бр. (Цена: €${prodPriceTotal.toFixed(2)})\n\n` +
+                           `- ${selectedProductName} | Размер: ${selectedSize} | Количество: ${finalQty}бр. (Базова цена: €${prodPriceTotal.toFixed(2)})\n\n` +
+                           `Приложен промокод: ${promoUsed}\n` +
+                           `Подаръчна опаковка: ${giftApplied}\n` +
                            `Доставка: ${deliveryText}\n` +
                            `Крайна сума за плащане: €${finalTotal}`;
             
