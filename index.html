@@ -94,7 +94,7 @@
             margin: 0;
         }
 
-        /* ПОДОБРЕНИЕ: Модерни сенки и анимация за продуктовите карти */
+        /* Сенки и анимация за продуктовите карти */
         .product-card {
             background: #fff;
             border-radius: 8px;
@@ -107,7 +107,7 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
 
-        /* ПОДОБРЕНИЕ: Hover ефект за Buy Now бутона */
+        /* Hover ефект за Buy Now бутона */
         .buy-btn {
             transition: background 0.3s ease, transform 0.2s ease;
         }
@@ -123,18 +123,20 @@
             z-index: 1000; 
             left: 0; top: 0; 
             width: 100%; height: 100%; 
-            background-color: rgba(0,0,0,0.7); 
+            background-color: rgba(0,0,0,0.6); 
+            overflow-y: auto; /* Позволява скролване на мобилни устройства, тъй като формата стана по-дълга */
         }
         .modal-content {
             background-color: #fff;
-            margin: 5% auto;
-            padding: 20px;
-            width: 90%;
-            max-width: 450px;
+            margin: 2% auto;
+            padding: 25px;
+            width: 92%;
+            max-width: 460px;
             text-align: center;
-            border-radius: 10px;
+            border-radius: 12px;
             position: relative;
             color: #333;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
         }
         .close-btn {
             position: absolute; right: 15px; top: 10px;
@@ -149,7 +151,7 @@
         }
         #modal-img {
             width: 100%;
-            max-height: 350px;
+            max-height: 280px; /* Намалено малко, за да се вижда повече от формата без скролване */
             object-fit: cover;
             border-radius: 8px;
         }
@@ -168,7 +170,6 @@
         .prev-btn { left: 10px; }
         .next-btn { right: 10px; }
         
-        /* ПОДОБРЕНИЕ: Стил за индикатора на снимките */
         .image-counter {
             font-size: 13px;
             color: #888;
@@ -176,40 +177,48 @@
             font-weight: 500;
         }
 
-        /* Опции за избор на размер и количество */
+        /* Форма за поръчка - Кутии за избор и Входни полета */
+        .order-form-group {
+            text-align: left;
+            margin-bottom: 12px;
+        }
+        .order-form-group label {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #444;
+        }
+        .form-input, .size-select {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+        .form-input:focus, .size-select:focus {
+            border-color: #d4a373;
+            outline: none;
+        }
+
+        /* Ред за Размер и Количество едно до друго */
         .options-wrapper {
             display: flex;
             gap: 15px;
-            margin: 15px 0;
-            text-align: left;
+            margin-bottom: 12px;
         }
-        .size-section {
-            flex: 2;
-        }
-        .qty-section {
-            flex: 1;
-        }
-        .options-wrapper label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-        .size-select {
-            width: 100%;
-            padding: 8px;
-            font-size: 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            height: 40px;
-        }
+        .size-section { flex: 2; }
+        .qty-section { flex: 1; }
 
-        /* ПОДОБРЕНИЕ: Стилове за бутоните за Количество */
+        /* Бутони за Количество */
         .qty-container {
             display: flex;
             border: 1px solid #ccc;
-            border-radius: 5px;
-            height: 40px;
+            border-radius: 6px;
+            height: 38px;
             overflow: hidden;
         }
         .qty-btn {
@@ -219,40 +228,75 @@
             font-size: 18px;
             cursor: pointer;
             font-weight: bold;
-            transition: background 0.2s;
         }
         .qty-btn:hover { background: #e0e0e0; }
         #product-qty {
-            width: 40px;
+            width: 35px;
             border: none;
             text-align: center;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             background: #fff;
         }
 
-        /* Информационен текст в модала */
+        /* Секция Сметка / Калкулатор за сумата */
+        .summary-box {
+            background-color: #faf6f0;
+            border: 1px solid #ebdcc5;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin: 15px 0;
+            text-align: left;
+            font-size: 14px;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            color: #666;
+        }
+        .summary-row.total {
+            border-top: 1px dashed #d4a373;
+            padding-top: 8px;
+            margin-top: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            color: #222;
+        }
+        .summary-row.total .total-price-highlight {
+            color: #b98453;
+        }
+
+        /* Информационен текст */
         .modal-info-text {
-            font-size: 13px;
+            font-size: 12px;
             color: #666;
             margin: 10px 0;
             background-color: #f8f9fa;
             padding: 8px;
             border-radius: 5px;
-            border-left: 3px solid #28a745;
+            border-left: 3px solid #d4a373;
+            text-align: left;
         }
 
+        /* Голям основен бутон за изпращане */
         .order-btn {
-            background-color: #28a745;
+            background-color: #d4a373;
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 14px 20px;
             font-size: 16px;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 6px;
             width: 100%;
             margin-top: 5px;
             font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background 0.3s;
+        }
+        .order-btn:hover {
+            background-color: #b98453;
         }
 
         /* Секция За нас */
@@ -310,12 +354,13 @@
             transform: scale(1.1);
         }
 
-        /* Адаптивност за мобилни телефони */
+        /* Адаптивност */
         @media (max-width: 768px) {
             .hero-banner { height: 350px; }
             .banner-content h1 { font-size: 1.8rem; }
             .banner-content p { font-size: 1rem; }
             .options-wrapper { flex-direction: column; gap: 10px; }
+            .modal-content { margin: 5% auto; padding: 15px; }
         }
     </style>
 </head>
@@ -326,7 +371,7 @@
         ✨ БЕЗПЛАТНА ДОСТАВКА ЗА ПОРЪЧКИ НАД €30 ✨
     </div>
 
-    <!-- Плаващ Viber Бутон за бърза връзка -->
+    <!-- Плаващ Viber Бутон -->
     <a href="viber://chat?number=%2B359879084664" class="viber-float" onclick="handleViberClick(event)" title="Пишете ни по Viber">
         💬
     </a>
@@ -351,7 +396,7 @@
         </div>
     </div>
 
-    <!-- НОВА СЕКЦИЯ С ПРЕДИМСТВА -->
+    <!-- СЕКЦИЯ С ПРЕДИМСТВА -->
     <div class="features-section">
         <div class="feature-item">
             <div class="icon">🎯</div>
@@ -370,7 +415,7 @@
         </div>
     </div>
 
-    <!-- СЕКЦИЯ ЗА НАС (ABOUT US) -->
+    <!-- СЕКЦИЯ ЗА НАС -->
     <section id="about" class="about-section">
         <div class="about-container">
             <h2>About HriZari Jewelry</h2>
@@ -543,7 +588,7 @@
         </div>
     </main>
 
-    <!-- ИЗСКАЧАЩ ПРОЗОРЕЦ (МОДАЛ) -->
+    <!-- ИЗСКАЧАЩ ПРОЗОРЕЦ (МОДАЛ) С ВГРАДЕНА ФОРМА ЗА ДАННИ -->
     <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -554,20 +599,18 @@
                 <button class="arrow-btn next-btn" onclick="changeImage(1)">&#10095;</button>
             </div>
 
-            <!-- ИНДИКАТОР ЗА СНИМКИТЕ -->
             <div id="image-counter" class="image-counter">Снимка 1 от 2</div>
 
-            <h3 id="modal-title">Име на продукта</h3>
-            <p class="price" style="font-size: 20px; font-weight: bold; margin: 10px 0;">Цена: €<span id="modal-price">0.00</span></p>
+            <h3 id="modal-title" style="margin-bottom: 15px;">Име на продукта</h3>
             
             <!-- СЕКЦИЯ ЗА ИЗБОР НА РАЗМЕР И КОЛИЧЕСТВО -->
             <div class="options-wrapper">
                 <div class="size-section">
-                    <label for="bracelet-size">Размер на китката:</label>
+                    <label for="bracelet-size">Изберете размер:</label>
                     <select id="bracelet-size" class="size-select">
-                        <option value="S (~15-16 см)">Размер S (~15-16 см)</option>
-                        <option value="M (~17-18 см) - Стандартен" selected>Размер M (~17-18 см)</option>
-                        <option value="L (~19-20 см)">Размер L (~19-20 см)</option>
+                        <option value="S (~15-16 см)">S (~15-16 см)</option>
+                        <option value="M (~17-18 см) - Стандартен">M (Стандартен размер - 17 см)</option>
+                        <option value="L (~19-20 см)">L (~19-20 см)</option>
                     </select>
                 </div>
                 
@@ -581,12 +624,52 @@
                 </div>
             </div>
 
-            <!-- ИНФОРМАЦИОНЕН ТЕКСТ ПРЕДИ БУТОНА -->
-            <div class="modal-info-text">
-                💡 При натискане на бутона ще се отвори вашият имейл клиент. Моля, изпратете съобщението, за да получим поръчката!
+            <!-- ИЗБОР НА ДОСТАВКА -->
+            <div class="order-form-group">
+                <label for="delivery-method">Доставка до:</label>
+                <select id="delivery-method" class="size-select" onchange="calculateTotal()">
+                    <option value="office">Офис на Еконт / Спиди (+€3.00)</option>
+                    <option value="address">Личен адрес (+€4.50)</option>
+                </select>
             </div>
 
-            <button class="order-btn" onclick="sendOrderEmail()">Завърши поръчката</button>
+            <!-- ДИНАМИЧЕН КАЛКУЛАТОР НА СУМАТА (КАТО НА СНИМКАТА) -->
+            <div class="summary-box">
+                <div class="summary-row">
+                    <span>Избрани продукти:</span>
+                    <span>€<span id="summary-products-price">0.00</span></span>
+                </div>
+                <div class="summary-row">
+                    <span>Доставка:</span>
+                    <span><span id="summary-shipping-price">€3.00</span></span>
+                </div>
+                <div class="summary-row total">
+                    <span>Крайна сума:</span>
+                    <span class="total-price-highlight">€<span id="summary-total-price">0.00</span></span>
+                </div>
+            </div>
+
+            <!-- ПОЛЕТА ЗА ДАННИ НА КЛИЕНТА ВГРАДЕНИ ДИРЕКТНО ТУК -->
+            <div class="order-form-group">
+                <label for="client-name">Име и Фамилия:</label>
+                <input type="text" id="client-name" class="form-input" placeholder="Иванка Иванова">
+            </div>
+
+            <div class="order-form-group">
+                <label for="client-phone">Телефон за връзка:</label>
+                <input type="tel" id="client-phone" class="form-input" placeholder="0888XXXXXX">
+            </div>
+
+            <div class="order-form-group">
+                <label for="client-address">Град и Адрес / Офис за доставка:</label>
+                <input type="text" id="client-address" class="form-input" placeholder="гр. София, офис на Еконт (Център)">
+            </div>
+
+            <div class="modal-info-text">
+                💡 При потвърждение ще се зареди Вашият имейл клиент. Изпратете генерираното писмо, за да финализирате поръчката.
+            </div>
+
+            <button class="order-btn" onclick="sendOrderEmail()">✉ Потвърди поръчката</button>
         </div>
     </div>
 
@@ -617,15 +700,18 @@
             currentImgIndex = 0;
 
             document.getElementById('modal-title').innerText = name;
-            document.getElementById('modal-price').innerText = price;
             document.getElementById('modal-img').src = currentImages[currentImgIndex];
             
-            // Нулиране на количеството и брояча на снимки
+            // Изчистване на полетата при нов прозорец
             document.getElementById('product-qty').value = 1;
+            document.getElementById('client-name').value = "";
+            document.getElementById('client-phone').value = "";
+            document.getElementById('client-address').value = "";
+            document.getElementById('delivery-method').selectedIndex = 0;
+            document.getElementById('bracelet-size').selectedIndex = 1; // Директен индекс за М размер
+            
             updateImageCounter();
-
-            // Задава стандартния размер M при отваряне
-            document.getElementById('bracelet-size').value = "M (~17-18 см) - Стандартен";
+            calculateTotal();
 
             document.getElementById('productModal').style.display = 'block';
         }
@@ -655,36 +741,62 @@
             let newQty = currentQty + amount;
             if (newQty >= 1 && newQty <= 10) {
                 qtyInput.value = newQty;
+                calculateTotal(); // Преизчислява сумата при промяна на бройката
             }
         }
 
+        // НОВА ФУНКЦИЯ: Динамичен калкулатор за сумите в реално време
+        function calculateTotal() {
+            let qty = parseInt(document.getElementById('product-qty').value);
+            let productsPrice = selectedProductPrice * qty;
+            
+            let deliveryMethod = document.getElementById('delivery-method').value;
+            let shippingPrice = 0;
+
+            // Проверка за безплатна доставка над €30 (само за продуктите)
+            if (productsPrice >= 30) {
+                shippingPrice = 0;
+                document.getElementById('summary-shipping-price').innerText = "БЕЗПЛАТНА (Промо)";
+            } else {
+                shippingPrice = deliveryMethod === "office" ? 3.00 : 4.50;
+                document.getElementById('summary-shipping-price').innerText = `€${shippingPrice.toFixed(2)}`;
+            }
+
+            let totalPrice = productsPrice + shippingPrice;
+
+            document.getElementById('summary-products-price').innerText = productsPrice.toFixed(2);
+            document.getElementById('summary-total-price').innerText = totalPrice.toFixed(2);
+        }
+
         function sendOrderEmail() {
-            let clientName = prompt("Моля, въведете вашето Име и Фамилия:");
-            if (!clientName) return;
+            // Вземане на данните директно от input полетата в кутията
+            let clientName = document.getElementById('client-name').value.trim();
+            let clientPhone = document.getElementById('client-phone').value.trim();
+            let clientAddress = document.getElementById('client-address').value.trim();
 
-            let clientPhone = prompt("Моля, въведете вашия Телефон за връзка:");
-            if (!clientPhone) return;
-
-            let clientAddress = prompt("Моля, въведете Град и Офис на Еконт/Спиди:");
-            if (!clientAddress) return;
+            // Валидация - ако някое поле е празно, спираме поръчката и известяваме клиента
+            if (!clientName || !clientPhone || !clientAddress) {
+                alert("Моля, попълнете всички полета за доставка (Име, Телефон и Адрес) преди да потвърдите поръчката!");
+                return;
+            }
 
             let selectedSize = document.getElementById('bracelet-size').value;
             let finalQty = parseInt(document.getElementById('product-qty').value);
-            let totalPrice = (selectedProductPrice * finalQty).toFixed(2);
-
-            // Автоматична проверка за безплатна доставка над €30
-            let shippingText = totalPrice >= 30 ? "БЕЗПЛАТНА (Промоция над €30)" : "За сметка на клиента";
+            
+            let prodPriceTotal = (selectedProductPrice * finalQty);
+            let deliveryText = document.getElementById('summary-shipping-price').innerText;
+            let finalTotal = document.getElementById('summary-total-price').innerText;
 
             let emailTo = "hrizarijewerly@gmail.com";
             let subject = encodeURIComponent("Нова поръчка от HriZari Jewelry");
             
             let bodyText = `Име на клиента: ${clientName}\n` +
                            `Телефон: ${clientPhone}\n` +
-                           `Адрес/Офис: ${clientAddress}\n\n` +
+                           `Адрес/Офис за доставка: ${clientAddress}\n\n` +
                            `Поръчани продукти:\n` +
-                           `- ${selectedProductName} | Размер: ${selectedSize} | Количество: ${finalQty}бр.\n\n` +
-                           `Доставка: ${shippingText}\n` +
-                           `Обща сума на поръчката: €${totalPrice}`;
+                           `- ${selectedProductName} | Размер: ${selectedSize} | Количество: ${finalQty}бр. (Цена: €${prodPriceTotal.toFixed(2)})\n\n` +
+                           `Доставка: ${deliveryText}\n` +
+                           `Крайна сума за плащане: €${finalTotal}`;
             
             let body = encodeURIComponent(bodyText);
 
