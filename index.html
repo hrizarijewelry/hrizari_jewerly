@@ -17,6 +17,41 @@
             font-weight: bold;
         }
 
+        /* НАВИГАЦИЯ */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c2c2c;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #d4a373;
+        }
+
         /* Стилове за големия банер (Hero Banner) */
         .hero-banner {
             background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(245, 230, 225, 0.65)), 
@@ -49,7 +84,7 @@
         .banner-btn {
             display: inline-block;
             padding: 12px 35px;
-            background-color: #d4a373; /* Златисто-кафяв топъл цвят */
+            background-color: #d4a373;
             color: white;
             text-decoration: none;
             border-radius: 4px;
@@ -58,6 +93,7 @@
             font-size: 0.9rem;
             letter-spacing: 1px;
             transition: background 0.3s ease;
+            cursor: pointer;
         }
 
         .banner-btn:hover {
@@ -94,26 +130,172 @@
             margin: 0;
         }
 
-        /* Сенки и анимация за продуктовите карти */
+        /* УПРАВЛЕНИЕ НА ТАБОВЕТЕ (Показване/Скриване) */
+        .tab-content {
+            display: block;
+        }
+        .tab-content.hidden {
+            display: none;
+        }
+
+        /* Продуктова секция и карти */
+        .shop-section {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #fff;
+        }
+        .shop-section h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #222;
+        }
+        .products-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
         .product-card {
             background: #fff;
             border-radius: 8px;
             padding: 15px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            width: 280px;
+            text-align: left;
         }
         .product-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
+        .product-image-container {
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border-radius: 6px;
+            height: 250px;
+        }
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.4s ease;
+        }
+        .hover-img {
+            opacity: 0;
+        }
+        .product-image-container:hover .hover-img {
+            opacity: 1;
+        }
+        .product-card h3 {
+            font-size: 18px;
+            margin: 15px 0 8px 0;
+            color: #333;
+        }
+        .product-desc {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.4;
+            height: 40px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 15px;
+        }
 
         /* Hover ефект за Buy Now бутона */
         .buy-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
             transition: background 0.3s ease, transform 0.2s ease;
         }
         .buy-btn:hover {
             background-color: #222;
             transform: scale(1.02);
+        }
+
+        /* СЕКЦИЯ ОТЗИВИ (Reviews) */
+        .reviews-section {
+            background-color: #fff9f5;
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid #ebdcc5;
+            border-bottom: 1px solid #ebdcc5;
+        }
+        .reviews-section h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #222;
+        }
+        .reviews-grid {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .review-card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid #f0f0f0;
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            text-align: left;
+        }
+        .review-stars {
+            color: #ffcc00;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .review-text {
+            font-style: italic;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        .review-author {
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .review-author::before {
+            content: "✓";
+            background-color: #28a745;
+            color: white;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
         }
 
         /* Стилове за модалния прозорец и галерията */
@@ -177,7 +359,7 @@
             font-weight: 500;
         }
 
-        /* Форма за поръчка - Кутии за избор и Входни полета */
+        /* Форма за поръчка */
         .order-form-group {
             text-align: left;
             margin-bottom: 12px;
@@ -204,7 +386,6 @@
             outline: none;
         }
 
-        /* Специален ред за Промокод с бутон "Приложи" */
         .promo-code-wrapper {
             display: flex;
             gap: 8px;
@@ -220,11 +401,8 @@
             font-weight: bold;
             transition: background 0.2s;
         }
-        .promo-btn:hover {
-            background-color: #555;
-        }
+        .promo-btn:hover { background-color: #555; }
 
-        /* Стил за подаръчната опаковка (Checkbox подредба) */
         .gift-wrap-container {
             display: flex;
             align-items: center;
@@ -247,7 +425,6 @@
             accent-color: #d4a373;
         }
 
-        /* Ред за Размер и Количество едно до друго */
         .options-wrapper {
             display: flex;
             gap: 15px;
@@ -256,7 +433,6 @@
         .size-section { flex: 2; }
         .qty-section { flex: 1; }
 
-        /* Бутони за Количество */
         .qty-container {
             display: flex;
             border: 1px solid #ccc;
@@ -282,7 +458,6 @@
             background: #fff;
         }
 
-        /* Секция Сметка / Калкулатор за сумата */
         .summary-box {
             background-color: #faf6f0;
             border: 1px solid #ebdcc5;
@@ -292,7 +467,7 @@
             text-align: left;
             font-size: 14px;
         }
-        .summary-row {
+        .summary-box .summary-row {
             display: flex;
             justify-content: space-between;
             margin-bottom: 6px;
@@ -306,11 +481,8 @@
             font-size: 16px;
             color: #222;
         }
-        .summary-row.total .total-price-highlight {
-            color: #b98453;
-        }
+        .summary-row.total .total-price-highlight { color: #b98453; }
 
-        /* Информационен текст */
         .modal-info-text {
             font-size: 12px;
             color: #666;
@@ -322,7 +494,6 @@
             text-align: left;
         }
 
-        /* Голям основен бутон за изпращане */
         .order-btn {
             background-color: #d4a373;
             color: white;
@@ -338,9 +509,7 @@
             letter-spacing: 0.5px;
             transition: background 0.3s;
         }
-        .order-btn:hover {
-            background-color: #b98453;
-        }
+        .order-btn:hover { background-color: #b98453; }
 
         /* Секция За нас */
         .about-section {
@@ -363,23 +532,23 @@
             color: #555;
         }
 
-        /* Линк за Instagram */
+        .footer-section {
+            padding: 40px 20px;
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+        }
         .instagram-link {
             color: #e1306c;
             text-decoration: none;
             font-weight: bold;
         }
-        .instagram-link:hover {
-            text-decoration: underline;
-        }
+        .instagram-link:hover { text-decoration: underline; }
 
-        /* Плаващ Viber бутон */
         .viber-float {
             position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 20px;
-            right: 20px;
+            width: 60px; height: 60px;
+            bottom: 20px; right: 20px;
             background-color: #735F9E;
             color: #FFF;
             border-radius: 50%;
@@ -388,16 +557,11 @@
             box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
             z-index: 100;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             transition: transform 0.3s;
         }
-        .viber-float:hover {
-            transform: scale(1.1);
-        }
+        .viber-float:hover { transform: scale(1.1); }
 
-        /* Адаптивност */
         @media (max-width: 768px) {
             .hero-banner { height: 350px; }
             .banner-content h1 { font-size: 1.8rem; }
@@ -411,7 +575,7 @@
 
     <!-- БАНЕР ЗА ПРОМОЦИЯ -->
     <div class="promo-banner">
-        ✨ БЕЗПЛАТНА ДОСТАВКА ЗА ПОРЪЧКИ НАД €30 ✨
+        ✨ БЕЗПЛАТНА ДОСТАВКА ЗА ПОРЪЧКИ НАД €30 | КОД: HRIZARI10 ЗА 10% ОТСТЪПКА ✨
     </div>
 
     <!-- Плаващ Viber Бутон -->
@@ -423,213 +587,243 @@
     <nav class="navbar">
         <div class="logo">HriZari Jewelry</div>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#bracelets-section">Bracelets</a></li>
-            <li><a href="#contacts">Contacts</a></li>
+            <li><a onclick="showTab('home')" id="nav-home" class="active">Home</a></li>
+            <li><a onclick="showTab('home', 'about')">About Us</a></li>
+            <li><a onclick="showTab('bracelets')" id="nav-bracelets">Bracelets</a></li>
+            <li><a onclick="showTab('home', 'reviews')">Reviews</a></li>
+            <li><a onclick="showTab('home', 'contacts')">Contacts</a></li>
         </ul>
     </nav>
 
-    <!-- ГЛАВЕН БАНЕР -->
-    <div class="hero-banner">
-        <div class="banner-content">
-            <h1>Ръчно изработена магия за твоето ежедневие</h1>
-            <p>Уникални гривни и колиета, създадени с любов и внимание към детайла.</p>
-            <a href="#bracelets-section" class="banner-btn">Разгледай колекцията</a>
+    <!-- ТАБ: НАЧАЛНА СТРАНИЦА (HOME) -->
+    <div id="tab-home" class="tab-content">
+        <!-- ГЛАВЕН БАНЕР -->
+        <div class="hero-banner">
+            <div class="banner-content">
+                <h1>Ръчно изработена магия за твоето ежедневие</h1>
+                <p>Уникални гривни, създадени с любов и внимание към детайла.</p>
+                <a onclick="showTab('bracelets')" class="banner-btn">Разгледай колекцията</a>
+            </div>
         </div>
+
+        <!-- СЕКЦИЯ С ПРЕДИМСТВА -->
+        <div class="features-section">
+            <div class="feature-item">
+                <div class="icon">🎯</div>
+                <h4>100% Ръчна изработка</h4>
+                <p>Всяко бижу е уникално</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon">💎</div>
+                <h4>Качествени материали</h4>
+                <p>Здрави плетки и стилни детайли</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon">⚡</div>
+                <h4>Бърза доставка</h4>
+                <p>До офис на Еконт или Спиди</p>
+            </div>
+        </div>
+
+        <!-- СЕКЦИЯ ЗА НАС -->
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <h2>About HriZari Jewelry</h2>
+                <p>Добре дошли в нашето кътче за творчество! Всички наши гривни се изработват изцяло на ръка с изключително внимание към детайла. Използваме качествени материали, здрави плетки и красиви естествени камъни, за да създадем уникални бижута, които носят настроение, стил и положителна енергия в ежедневието ви.</p>
+            </div>
+        </section>
+
+        <!-- СЕКЦИЯ С ОТЗИВИ -->
+        <section id="reviews" class="reviews-section">
+            <h2>Какво казват нашите клиенти?</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Гривните са уникални! Поръчах си Rainbow Summer и на живо цветовете са супер свежи. Изработката е много здрава. Със сигурност ще поръчам пак!"</p>
+                    <div class="review-author">Мария П.</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Изключително коректно отношение. Поръчах гривна Шамбала за подарък на приятелка, пристигна в прекрасна подаръчна кутийка още на следващия ден."</p>
+                    <div class="review-author">Елена С.</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Много фини и красиви бижута. Нося моята черна минималистична гривна всеки ден и не е мръднала. Препоръчвам с две ръце!"</p>
+                    <div class="review-author">Анелия К.</div>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <!-- СЕКЦИЯ С ПРЕДИМСТВА -->
-    <div class="features-section">
-        <div class="feature-item">
-            <div class="icon">🎯</div>
-            <h4>100% Ръчна изработка</h4>
-            <p>Всяко бижу е уникално</p>
-        </div>
-        <div class="feature-item">
-            <div class="icon">💎</div>
-            <h4>Качествени материали</h4>
-            <p>Здрави плетки и стилни детайли</p>
-        </div>
-        <div class="feature-item">
-            <div class="icon">⚡</div>
-            <h4>Бърза доставка</h4>
-            <p>До офис на Еконт или Спиди</p>
-        </div>
-    </div>
 
-    <!-- СЕКЦИЯ ЗА НАС -->
-    <section id="about" class="about-section">
-        <div class="about-container">
-            <h2>About HriZari Jewelry</h2>
-            <p>Добре дошли в нашето кътче за творчество! Всички наши гривни се изработват изцяло на ръка с изключително внимание към детайла. Използмаве качествени материали, здрави плетки и красиви естествени камъни, за да създадем уникални бижута, които носят настроение, стил и положителна енергия в ежедневието ви.</p>
-        </div>
-    </section>
-
-    <!-- СЕКЦИЯ ГРИВНИ -->
-    <main class="shop-section" id="bracelets-section">
-        <h2>Our handmade bracelets</h2>
-        
-        <div class="products-grid">
+    <!-- ТАБ: ВСИЧКИ ГРИВНИ (BRACELETS) -->
+    <div id="tab-bracelets" class="tab-content hidden">
+        <main class="shop-section" id="bracelets-section">
+            <h2>Our handmade collection</h2>
             
-            <!-- Продукт 1 -->
-            <div class="product-card">
-                <div class="product-image-container" onclick="openModal('Rainbow Summer Bracelet', '7.50', 'grivna1_a.jpg', 'grivna1_b.jpg')">
-                    <img src="grivna1_a.jpg" alt="Rainbow Bracelet" class="product-img main-img">
-                    <img src="grivna1_b.jpg" alt="Rainbow Bracelet View" class="product-img hover-img">
+            <div class="products-grid">
+                
+                <!-- Продукт 1 -->
+                <div class="product-card">
+                    <div class="product-image-container" onclick="openModal('Rainbow Summer Bracelet', '7.50', 'grivna1_a.jpg', 'grivna1_b.jpg')">
+                        <img src="grivna1_a.jpg" alt="Rainbow Bracelet" class="product-img main-img">
+                        <img src="grivna1_b.jpg" alt="Rainbow Bracelet View" class="product-img hover-img">
+                    </div>
+                    <h3>Rainbow Summer Bracelet</h3>
+                    <p class="product-desc">Ръчно изтъкана цветна гривна в преливащи нюанси, носеща лятно настроение.</p>
+                    <p class="price">€7.50</p>
+                    <button class="buy-btn" onclick="openModal('Rainbow Summer Bracelet', '7.50', 'grivna1_a.jpg', 'grivna1_b.jpg')">Buy now</button>
                 </div>
-                <h3>Rainbow Summer Bracelet</h3>
-                <p class="product-desc">Ръчно изтъкана цветна гривна в преливащи нюанси, носеща лятно настроение.</p>
-                <p class="price">€7.50</p>
-                <button class="buy-btn" onclick="openModal('Rainbow Summer Bracelet', '7.50', 'grivna1_a.jpg', 'grivna1_b.jpg')">Buy now</button>
-            </div>
 
-            <!-- Продукт 2 -->
-            <div class="product-card">
-                <div class="product-image-container" onclick="openModal('Classic Black & Red Shamballa', '10.00', 'grivna2_a.jpg', 'grivna2_b.jpg')">
-                    <img src="grivna2_a.jpg" alt="Shamballa Bracelet" class="product-img main-img">
-                    <img src="grivna2_b.jpg" alt="Shamballa Bracelet View" class="product-img hover-img">
+                <!-- Продукт 2 -->
+                <div class="product-card">
+                    <div class="product-image-container" onclick="openModal('Classic Black & Red Shamballa', '10.00', 'grivna2_a.jpg', 'grivna2_b.jpg')">
+                        <img src="grivna2_a.jpg" alt="Shamballa Bracelet" class="product-img main-img">
+                        <img src="grivna2_b.jpg" alt="Shamballa Bracelet View" class="product-img hover-img">
+                    </div>
+                    <h3>Classic Black & Red Shamballa</h3>
+                    <p class="product-desc">Елегантна гривна Шамбала с лъскави черни елементи и контрастиращ червен конец.</p>
+                    <p class="price">€10.00</p>
+                    <button class="buy-btn" onclick="openModal('Classic Black & Red Shamballa', '10.00', 'grivna2_a.jpg', 'grivna2_b.jpg')">Buy now</button>
                 </div>
-                <h3>Classic Black & Red Shamballa</h3>
-                <p class="product-desc">Елегантна гривна Шамбала с лъскави черни елементи и контрастиращ червен конец.</p>
-                <p class="price">€10.00</p>
-                <button class="buy-btn" onclick="openModal('Classic Black & Red Shamballa', '10.00', 'grivna2_a.jpg', 'grivna2_b.jpg')">Buy now</button>
-            </div>
 
-            <!-- Продукт 3 -->
-            <div class="product-card">
-                <div class="product-image-container" onclick="openModal('Neon Woven Bracelet', '7.50', 'grivna3_a.jpg', 'grivna3_b.jpg')">
-                    <img src="grivna3_a.jpg" alt="Neon Bracelet" class="product-img main-img">
-                    <img src="grivna3_b.jpg" alt="Neon Bracelet View" class="product-img hover-img">
+                <!-- Продукт 3 -->
+                <div class="product-card">
+                    <div class="product-image-container" onclick="openModal('Pink Elegance Bracelet', '6.00', 'grivna4_a.jpg', 'grivna4_b.jpg')">
+                        <img src="grivna4_a.jpg" alt="Pink Elegance" class="product-img main-img">
+                        <img src="grivna4_b.jpg" alt="Pink Elegance View" class="product-img hover-img">
+                    </div>
+                    <h3>Pink Elegance Bracelet</h3>
+                    <p class="product-desc">Нежна и дискретна гривна в пастелно розово, перфектна за ежедневен стил.</p>
+                    <p class="price">€6.00</p>
+                    <button class="buy-btn" onclick="openModal('Pink Elegance Bracelet', '6.00', 'grivna4_a.jpg', 'grivna4_b.jpg')">Buy now</button>
                 </div>
-                <h3>Neon Woven Bracelet</h3>
-                <p class="product-desc">Свежа комбинация от неонови цветове – лилаво, зелено и оранжево в здрава плетка.</p>
-                <p class="price">€7.50</p>
-                <button class="buy-btn" onclick="openModal('Neon Woven Bracelet', '7.50', 'grivna3_a.jpg', 'grivna3_b.jpg')">Buy now</button>
-            </div>
 
-            <!-- Продукт 4 -->
-            <div class="product-card">
-                <div class="product-image-container" onclick="openModal('Pink Elegance Bracelet', '6.00', 'grivna4_a.jpg', 'grivna4_b.jpg')">
-                    <img src="grivna4_a.jpg" alt="Pink Elegance" class="product-img main-img">
-                    <img src="grivna4_b.jpg" alt="Pink Elegance View" class="product-img hover-img">
+                <!-- Продукт 4 -->
+                <div class="product-card">
+                    <div class="product-image-container" onclick="openModal('Гривна Модел 4', '8.00', 'grivna4_a.jpg', 'grivna4_b.jpg')">
+                        <img src="grivna4_a.jpg" alt="Модел" class="product-img main-img">
+                        <img src="grivna4_b.jpg" alt="Модел Преглед" class="product-img hover-img">
+                    </div>
+                    <h3>Гривна Модел 4</h3>
+                    <p class="product-desc">Кратко описание на модел 4 тук.</p>
+                    <p class="price">€8.00</p>
+                    <button class="buy-btn" onclick="openModal('Гривна Модел 4', '8.00', 'grivna4_a.jpg', 'grivna4_b.jpg')">Buy now</button>
                 </div>
-                <h3>Pink Elegance Bracelet</h3>
-                <p class="product-desc">Нежна и дискретна гривна в пастелно розово, перфектна за ежедневен стил.</p>
-                <p class="price">€6.00</p>
-                <button class="buy-btn" onclick="openModal('Pink Elegance Bracelet', '6.00', 'grivna4_a.jpg', 'grivna4_b.jpg')">Buy now</button>
-            </div>
 
-            <!-- Продукт 5 -->
-            <div class="product-card">
-                <div class="product-image-container" onclick="openModal('Deep Ocean Woven Bracelet', '7.50', 'grivna5_a.jpg', 'grivna5_b.jpg')">
-                    <img src="grivna5_a.jpg" alt="Deep Blue Bracelet" class="product-img main-img">
-                    <img src="grivna5_b.jpg" alt="Deep Blue Bracelet View" class="product-img hover-img">
+                <!-- Продукт 5 -->
+                <div class="product-card">
+                    <div class="product-image-container" onclick="openModal('Гривна Модел 5', '8.50', 'grivna5_a.jpg', 'grivna5_b.jpg')">
+                        <img src="grivna5_a.jpg" alt="Модел" class="product-img main-img">
+                        <img src="grivna5_b.jpg" alt="Модел Преглед" class="product-img hover-img">
+                    </div>
+                    <h3>Гривна Модел 5</h3>
+                    <p class="product-desc">Кратко описание на модел 5 тук.</p>
+                    <p class="price">€8.50</p>
+                    <button class="buy-btn" onclick="openModal('Гривна Модел 5', '8.50', 'grivna5_a.jpg', 'grivna5_b.jpg')">Buy now</button>
                 </div>
-                <h3>Deep Ocean Woven Bracelet</h3>
-                <p class="product-desc">Стилна тъмна плетка в дълбок нюанс, подходяща както за жени, така и за мъже.</p>
-                <p class="price">€7.50</p>
-                <button class="buy-btn" onclick="openModal('Deep Ocean Woven Bracelet', '7.50', 'grivna5_a.jpg', 'grivna5_b.jpg')">Buy now</button>
-            </div>
 
-            <!-- Продукт 6 -->
-            <div class="product-card">
-                <div class="product-image-container" onclick="openModal('Red Passion Woven Bracelet', '7.50', 'grivna6_a.jpg', 'grivna6_b.jpg')">
-                    <img src="grivna6_a.jpg" alt="Red Passion" class="product-img main-img">
-                    <img src="grivna6_b.jpg" alt="Red Passion View" class="product-img hover-img">
+                <!-- Продукт 6 -->
+                <div class="product-card">
+                    <div class="product-image-container" onclick="openModal('Гривна Модел 6', '9.00', 'grivna6_a.jpg', 'grivna6_b.jpg')">
+                        <img src="grivna6_a.jpg" alt="Модел" class="product-img main-img">
+                        <img src="grivna6_b.jpg" alt="Модел Преглед" class="product-img hover-img">
+                    </div>
+                    <h3>Гривна Модел 6</h3>
+                    <p class="product-desc">Кратко описание на модел 6 тук.</p>
+                    <p class="price">€9.00</p>
+                    <button class="buy-btn" onclick="openModal('Гривна Модел 6', '9.00', 'grivna6_a.jpg', 'grivna6_b.jpg')">Buy now</button>
                 </div>
-                <h3>Red Passion Woven Bracelet</h3>
-                <p class="product-desc">Ярка червена гривна със стилни тъмни акценти, изплетена с изключително внимание.</p>
-                <p class="price">€7.50</p>
-                <button class="buy-btn" onclick="openModal('Red Passion Woven Bracelet', '7.50', 'grivna6_a.jpg', 'grivna6_b.jpg')">Buy now</button>
-            </div>
 
-            <!-- Продукт 7 -->
-            <div class="product-card">
-                <div class="product-image-container" onclick="openModal('Sky Blue Comfort Bracelet', '7.50', 'grivna7_a.jpg', 'grivna7_b.jpg')">
-                    <img src="grivna7_a.jpg" alt="Sky Blue" class="product-img main-img">
-                    <img src="grivna7_b.jpg" alt="Sky Blue View" class="product-img hover-img">
+                <!-- Продукт 7 -->
+                <div class="product-card">
+                    <div class="product-image-container" onclick="openModal('Гривна Модел 7', '7.00', 'grivna7_a.jpg', 'grivna7_b.jpg')">
+                        <img src="grivna7_a.jpg" alt="Модел" class="product-img main-img">
+                        <img src="grivna7_b.jpg" alt="Модел Преглед" class="product-img hover-img">
+                    </div>
+                    <h3>Гривна Модел 7</h3>
+                    <p class="product-desc">Кратко описание на модел 7 тук.</p>
+                    <p class="price">€7.00</p>
+                    <button class="buy-btn" onclick="openModal('Гривна Модел 7', '7.00', 'grivna7_a.jpg', 'grivna7_b.jpg')">Buy now</button>
                 </div>
-                <h3>Sky Blue Comfort Bracelet</h3>
-                <p class="product-desc">Красив небесносин нюанс, съчетан със здрава и удобна за ежедневно носене плетка.</p>
-                <p class="price">€7.50</p>
-                <button class="buy-btn" onclick="openModal('Sky Blue Comfort Bracelet', '7.50', 'grivna7_a.jpg', 'grivna7_b.jpg')">Buy now</button>
-            </div>
 
-            <!-- Продукт 8 -->
-            <div class="product-card">
-                <div class="product-image-container" onclick="openModal('Midnight Black Minimalist', '6.00', 'grivna8_a.jpg', 'grivna8_b.jpg')">
-                    <img src="grivna8_a.jpg" alt="Midnight Black" class="product-img main-img">
-                    <img src="grivna8_b.jpg" alt="Midnight Black View" class="product-img hover-img">
+                <!-- Продукт 8 -->
+                <div class="product-card">
+                    <div class="product-image-container" onclick="openModal('Гривна Модел 8', '11.00', 'grivna8_a.jpg', 'grivna8_b.jpg')">
+                        <img src="grivna8_a.jpg" alt="Модел" class="product-img main-img">
+                        <img src="grivna8_b.jpg" alt="Модел Преглед" class="product-img hover-img">
+                    </div>
+                    <h3>Гривна Модел 8</h3>
+                    <p class="product-desc">Кратко описание на модел 8 тук.</p>
+                    <p class="price">€11.00</p>
+                    <button class="buy-btn" onclick="openModal('Гривна Модел 8', '11.00', 'grivna8_a.jpg', 'grivna8_b.jpg')">Buy now</button>
                 </div>
-                <h3>Midnight Black Minimalist</h3>
-                <p class="product-desc">Изчистен класически черен дизайн, подходящ за всякакви комбинации и стилове.</p>
-                <p class="price">€6.00</p>
-                <button class="buy-btn" onclick="openModal('Midnight Black Minimalist', '6.00', 'grivna8_a.jpg', 'grivna8_b.jpg')">Buy now</button>
-            </div>
 
-            <!-- Продукт 9 -->
-            <div class="product-card">
-                <div class="product-image-container" onclick="openModal('Berry Mix Woven Bracelet', '7.50', 'grivna9_a.jpg', 'grivna9_b.jpg')">
-                    <img src="grivna9_a.jpg" alt="Berry Mix" class="product-img main-img">
-                    <img src="grivna9_b.jpg" alt="Berry Mix View" class="product-img hover-img">
+                <!-- Продукт 9 -->
+                <div class="product-card">
+                    <div class="product-image-container" onclick="openModal('Гривна Модел 9', '6.50', 'grivna9_a.jpg', 'grivna9_b.jpg')">
+                        <img src="grivna9_a.jpg" alt="Модел" class="product-img main-img">
+                        <img src="grivna9_b.jpg" alt="Модел Преглед" class="product-img hover-img">
+                    </div>
+                    <h3>Гривна Модел 9</h3>
+                    <p class="product-desc">Кратко описание на модел 9 тук.</p>
+                    <p class="price">€6.50</p>
+                    <button class="buy-btn" onclick="openModal('Гривна Модел 9', '6.50', 'grivna9_a.jpg', 'grivna9_b.jpg')">Buy now</button>
                 </div>
-                <h3>Berry Mix Woven Bracelet</h3>
-                <p class="product-desc">Забавна и жизнена комбинация от розови, лилави и сини нишки в перфектен баланс.</p>
-                <p class="price">€7.50</p>
-                <button class="buy-btn" onclick="openModal('Berry Mix Woven Bracelet', '7.50', 'grivna9_a.jpg', 'grivna9_b.jpg')">Buy now</button>
-            </div>
 
-            <!-- Продукт 10 -->
-            <div class="product-card">
-                <div class="product-image-container" onclick="openModal('Turquoise Wave Bracelet', '7.50', 'grivna10_a.jpg', 'grivna10_b.jpg')">
-                    <img src="grivna10_a.jpg" alt="Turquoise Wave" class="product-img main-img">
-                    <img src="grivna10_b.jpg" alt="Turquoise Wave View" class="product-img hover-img">
+                <!-- Продукт 10 -->
+                <div class="product-card">
+                    <div class="product-image-container" onclick="openModal('Гривна Модел 10', '12.00', 'grivna10_a.jpg', 'grivna10_b.jpg')">
+                        <img src="grivna10_a.jpg" alt="Модел" class="product-img main-img">
+                        <img src="grivna10_b.jpg" alt="Модел Преглед" class="product-img hover-img">
+                    </div>
+                    <h3>Гривна Модел 10</h3>
+                    <p class="product-desc">Кратко описание на модел 10 тук.</p>
+                    <p class="price">€12.00</p>
+                    <button class="buy-btn" onclick="openModal('Гривна Модел 10', '12.00', 'grivna10_a.jpg', 'grivna10_b.jpg')">Buy now</button>
                 </div>
-                <h3>Turquoise Wave Bracelet</h3>
-                <p class="product-desc">Свеж тюркоазен цвят, напомнящ за морски вълни и екзотични дестинации.</p>
-                <p class="price">€7.50</p>
-                <button class="buy-btn" onclick="openModal('Turquoise Wave Bracelet', '7.50', 'grivna10_a.jpg', 'grivna10_b.jpg')">Buy now</button>
-            </div>
 
-            <!-- Продукт 11 -->
-            <div class="product-card">
-                <div class="product-image-container" onclick="openModal('Tricolor Tradition Bracelet', '7.50', 'grivna11_a.jpg', 'grivna11_b.jpg')">
-                    <img src="grivna11_a.jpg" alt="Tricolor Bracelet" class="product-img main-img">
-                    <img src="grivna11_b.jpg" alt="Tricolor Bracelet View" class="product-img hover-img">
+                <!-- Продукт 11 -->
+                <div class="product-card">
+                    <div class="product-image-container" onclick="openModal('Гривна Модел 11', '7.80', 'grivna11_a.jpg', 'grivna11_b.jpg')">
+                        <img src="grivna11_a.jpg" alt="Модел" class="product-img main-img">
+                        <img src="grivna11_b.jpg" alt="Модел Преглед" class="product-img hover-img">
+                    </div>
+                    <h3>Гривна Модел 11</h3>
+                    <p class="product-desc">Кратко описание на модел 11 тук.</p>
+                    <p class="price">€7.80</p>
+                    <button class="buy-btn" onclick="openModal('Гривна Модел 11', '7.80', 'grivna11_a.jpg', 'grivna11_b.jpg')">Buy now</button>
                 </div>
-                <h3>Tricolor Tradition Bracelet</h3>
-                <p class="product-desc">Красив бяло-зелено-червен дизайн, вдъхновен от традиционните български мотиви.</p>
-                <p class="price">€7.50</p>
-                <button class="buy-btn" onclick="openModal('Tricolor Tradition Bracelet', '7.50', 'grivna11_a.jpg', 'grivna11_b.jpg')">Buy now</button>
-            </div>
 
-            <!-- Продукт 12 -->
-            <div class="product-card">
-                <div class="product-image-container" onclick="openModal('Olive Forest Woven Bracelet', '7.50', 'grivna12_a.jpg', 'grivna12_b.jpg')">
-                    <img src="grivna12_a.jpg" alt="Olive Forest" class="product-img main-img">
-                    <img src="grivna12_b.jpg" alt="Olive Forest View" class="product-img hover-img">
+                <!-- Продукт 12 -->
+                <div class="product-card">
+                    <div class="product-image-container" onclick="openModal('Гривна Модел 12', '9.50', 'grivna12_a.jpg', 'grivna12_b.jpg')">
+                        <img src="grivna12_a.jpg" alt="Модел" class="product-img main-img">
+                        <img src="grivna12_b.jpg" alt="Модел Преглед" class="product-img hover-img">
+                    </div>
+                    <h3>Гривна Модел 12</h3>
+                    <p class="product-desc">Кратко описание на модел 12 тук.</p>
+                    <p class="price">€9.50</p>
+                    <button class="buy-btn" onclick="openModal('Гривна Модел 12', '9.50', 'grivna12_a.jpg', 'grivna12_b.jpg')">Buy now</button>
                 </div>
-                <h3>Olive Forest Woven Bracelet</h3>
-                <p class="product-desc">Стилна земна гривна в наситени маслинено-зелени тонове, перфектна за всеки сезон.</p>
-                <p class="price">€7.50</p>
-                <button class="buy-btn" onclick="openModal('Olive Forest Woven Bracelet', '7.50', 'grivna12_a.jpg', 'grivna12_b.jpg')">Buy now</button>
-            </div>
 
-            <!-- Продукт 13 -->
-            <div class="product-card">
-                <div class="product-image-container" onclick="openModal('Candy Violet Wave Bracelet', '7.50', 'grivna13_a.jpg', 'grivna13_b.jpg')">
-                    <img src="grivna13_a.jpg" alt="Candy Violet" class="product-img main-img">
-                    <img src="grivna13_b.jpg" alt="Candy Violet View" class="product-img hover-img">
+                <!-- Продукт 13 -->
+                <div class="product-card">
+                    <div class="product-image-container" onclick="openModal('Гривна Модел 13', '10.50', 'grivna13_a.jpg', 'grivna13_b.jpg')">
+                        <img src="grivna13_a.jpg" alt="Модел" class="product-img main-img">
+                        <img src="grivna13_b.jpg" alt="Модел Преглед" class="product-img hover-img">
+                    </div>
+                    <h3>Гривна Модел 13</h3>
+                    <p class="product-desc">Кратко описание на модел 13 тук.</p>
+                    <p class="price">€10.50</p>
+                    <button class="buy-btn" onclick="openModal('Гривна Модел 13', '10.50', 'grivna13_a.jpg', 'grivna13_b.jpg')">Buy now</button>
                 </div>
-                <h3>Candy Violet Wave Bracelet</h3>
-                <p class="product-desc">Нежно преливане от наситено лилаво към бонбонено розово в ефектна релефна плетка.</p>
-                <p class="price">€7.50</p>
-                <button class="buy-btn" onclick="openModal('Candy Violet Wave Bracelet', '7.50', 'grivna13_a.jpg', 'grivna13_b.jpg')">Buy now</button>
-            </div>
 
-        </div>
-    </main>
+            </div>
+        </main>
+    </div>
+
 
     <!-- ИЗСКАЧАЩ ПРОЗОРЕЦ (МОДАЛ) С ВГРАДЕНА ФОРМА ЗА ДАННИ -->
     <div id="productModal" class="modal">
@@ -646,7 +840,6 @@
 
             <h3 id="modal-title" style="margin-bottom: 15px;">Име на продукта</h3>
             
-            <!-- СЕКЦИЯ ЗА ИЗБОР НА РАЗМЕР И КОЛИЧЕСТВО -->
             <div class="options-wrapper">
                 <div class="size-section">
                     <label for="bracelet-size">Изберете размер:</label>
@@ -667,7 +860,6 @@
                 </div>
             </div>
 
-            <!-- ИЗБОР НА ДОСТАВКА -->
             <div class="order-form-group">
                 <label for="delivery-method">Доставка до:</label>
                 <select id="delivery-method" class="size-select" onchange="calculateTotal()">
@@ -676,13 +868,11 @@
                 </select>
             </div>
 
-            <!-- ДОБАВКА: КУТИЯ ЗА ПОДАРЪЧНА ОПАКОВКА -->
             <label class="gift-wrap-container">
                 <input type="checkbox" id="gift-wrap" onchange="calculateTotal()">
                 🎁 Добави подаръчна кутийка (+€1.50)
             </label>
 
-            <!-- ДОБАВКА: ПОЛЕ ЗА ПРОМОКОД -->
             <div class="order-form-group">
                 <label for="promo-code">Промокод:</label>
                 <div class="promo-code-wrapper">
@@ -692,7 +882,6 @@
                 <span id="promo-message" style="font-size: 12px; display: block; margin-top: 4px; font-weight: bold;"></span>
             </div>
 
-            <!-- ДИНАМИЧЕН КАЛКУЛАТОР НА СУМАТА -->
             <div class="summary-box">
                 <div class="summary-row">
                     <span>Избрани продукти:</span>
@@ -716,7 +905,6 @@
                 </div>
             </div>
 
-            <!-- ПОЛЕТА ЗА ДАННИ НА КЛИЕНТА -->
             <div class="order-form-group">
                 <label for="client-name">Име и Фамилия:</label>
                 <input type="text" id="client-name" class="form-input" placeholder="Иванка Иванова">
@@ -740,6 +928,7 @@
         </div>
     </div>
 
+
     <!-- ФУТЪР С КОНТАКТИ -->
     <footer id="contacts" class="footer-section">
         <div class="footer-content">
@@ -755,6 +944,32 @@
     </footer>
 
     <script>
+        function showTab(tabName, scrollToElementId = null) {
+            document.getElementById('tab-home').classList.add('hidden');
+            document.getElementById('tab-bracelets').classList.add('hidden');
+            
+            document.getElementById('nav-home').classList.remove('active');
+            document.getElementById('nav-bracelets').classList.remove('active');
+
+            if (tabName === 'home') {
+                document.getElementById('tab-home').classList.remove('hidden');
+                document.getElementById('nav-home').classList.add('active');
+            } else if (tabName === 'bracelets') {
+                document.getElementById('tab-bracelets').classList.remove('hidden');
+                document.getElementById('nav-bracelets').classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            if (scrollToElementId) {
+                setTimeout(() => {
+                    const element = document.getElementById(scrollToElementId);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 100);
+            }
+        }
+
         let currentImages = [];
         let currentImgIndex = 0;
         let selectedProductName = "";
@@ -771,7 +986,6 @@
             document.getElementById('modal-title').innerText = name;
             document.getElementById('modal-img').src = currentImages[currentImgIndex];
             
-            // Нулиране на полетата и състоянията
             document.getElementById('product-qty').value = 1;
             document.getElementById('client-name').value = "";
             document.getElementById('client-phone').value = "";
@@ -820,14 +1034,13 @@
             }
         }
 
-        // НОВА ФУНКЦИЯ: Прилагане на валиден промокод
         function applyPromoCode() {
             let enteredCode = document.getElementById('promo-code').value.trim().toUpperCase();
             let msgElement = document.getElementById('promo-message');
 
             if (enteredCode === "HRIZARI10") {
                 isDiscountApplied = true;
-                discountPercentage = 0.10; // 10% отстъпка
+                discountPercentage = 0.10;
                 msgElement.style.color = "#28a745";
                 msgElement.innerText = "✓ Промокодът е приложен! (10% отстъпка)";
             } else if (enteredCode === "") {
@@ -843,12 +1056,10 @@
             calculateTotal();
         }
 
-        // ОБНОВЕНА ФУНКЦИЯ: Преизчисляване на сметката с включен промокод и подарък
         function calculateTotal() {
             let qty = parseInt(document.getElementById('product-qty').value);
             let productsPrice = selectedProductPrice * qty;
             
-            // Изчисляване на отстъпката
             let discountAmount = 0;
             if (isDiscountApplied) {
                 discountAmount = productsPrice * discountPercentage;
@@ -858,7 +1069,6 @@
                 document.getElementById('discount-row').style.display = 'none';
             }
 
-            // Изчисляване на цената за подаръчна кутия
             let giftPrice = 0;
             if (document.getElementById('gift-wrap').checked) {
                 giftPrice = 1.50;
@@ -870,7 +1080,6 @@
             let deliveryMethod = document.getElementById('delivery-method').value;
             let shippingPrice = 0;
 
-            // Безплатна доставка над €30 (гледа се базовата цена на продуктите)
             if (productsPrice >= 30) {
                 shippingPrice = 0;
                 document.getElementById('summary-shipping-price').innerText = "БЕЗПЛАТНА (Промо)";
@@ -879,7 +1088,6 @@
                 document.getElementById('summary-shipping-price').innerText = `€${shippingPrice.toFixed(2)}`;
             }
 
-            // Крайна формула: Продукти - Отстъпка + Подарък + Доставка
             let totalPrice = productsPrice - discountAmount + giftPrice + shippingPrice;
 
             document.getElementById('summary-products-price').innerText = productsPrice.toFixed(2);
@@ -913,7 +1121,7 @@
                            `Телефон: ${clientPhone}\n` +
                            `Адрес/Офис за доставка: ${clientAddress}\n\n` +
                            `Поръчани продукти:\n` +
-                           `- ${selectedProductName} | Размер: ${selectedSize} | Количество: ${finalQty}бр. (Базова цена: €${prodPriceTotal.toFixed(2)})\n\n` +
+                           `- ${selectedProductName} | Размер: ${selectedSize} | Quantity: ${finalQty}бр. (Базова цена: €${prodPriceTotal.toFixed(2)})\n\n` +
                            `Приложен промокод: ${promoUsed}\n` +
                            `Подаръчна опаковка: ${giftApplied}\n` +
                            `Доставка: ${deliveryText}\n` +
@@ -921,7 +1129,7 @@
             
             let body = encodeURIComponent(bodyText);
 
-            window.location.href = `mailto:${emailTo}?subject=${subject}&body=${body}`;
+            window.location.href = `mailto:${emailTo}?subject=${subject}?body=${body}`;
             closeModal();
         }
 
